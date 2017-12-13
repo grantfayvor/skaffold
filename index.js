@@ -95,7 +95,6 @@ function authSetup(useAuth, callback) {
 var createConfigFile = function (data) {
     try {
         fs.writeFileSync(currentPath + '/config.json', data);
-        status.stop();
     } catch (error) {
         throw new Error("error occured while saving file. please try again. " + error);
     }
@@ -142,6 +141,9 @@ var copyRouteFile = function () {
         }
         fs.mkdirSync(currentPath + '/routes');
         fs.writeFileSync(currentPath + '/routes/route.js', routeData + '\n\n' + authRouteData);
+        setTimeout(function () {
+            status.stop();
+        }, 50);
     } catch (error) {
         throw new Error("error occured while trying to copy route file. please try again. " + error);
     }
