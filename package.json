@@ -1,0 +1,23 @@
+{
+  "name": "scaffold-init",
+  "version": "1.0.0",
+  "description": "interactive CLI init for scaffold project",
+  "main": "index.js",
+  "bin": {
+    "scaffold": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harrison Favour",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "clear": "0.0.1",
+    "clui": "^0.3.6",
+    "figlet": "^1.2.0",
+    "inquirer": "^4.0.1",
+    "minimist": "^1.2.0",
+    "preferences": "^1.0.2"
+  }
+}
