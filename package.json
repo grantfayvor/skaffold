@@ -1,10 +1,10 @@
 {
-  "name": "scaffold",
+  "name": "hermes",
   "version": "1.0.0",
-  "description": "interactive CLI init for scaffold project",
+  "description": "interactive CLI init for hermes project",
   "main": "index.js",
   "bin": {
-    "scaffold": "./index.js"
+    "hermes": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

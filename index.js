@@ -18,7 +18,7 @@ clear();
 var processArgv = require('minimist')(process.argv.slice(2));
 console.log(
     chalk.yellow(
-        figlet.textSync('SCAFFOLD', { horizontalLayout: 'full' })
+        figlet.textSync('HERMES', { horizontalLayout: 'full' })
     )
 );
 
@@ -103,12 +103,12 @@ var createConfigFile = function (data) {
 var updatePackageJson = function (options) {
     var package = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
     package.dependencies = {
-        "scaffold": "1.0.0"
+        "hermes-main": "1.0.0"
     }
     if (options.auth !== null) {
         package.dependencies = {
-            "scaffold": "1.0.0",
-            "scaffold-auth": "1.0.0"
+            "hermes-main": "1.0.0",
+            "hermes-auth": "1.0.0"
         }
     }
     try {
