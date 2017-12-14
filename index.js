@@ -107,8 +107,8 @@ var updatePackageJson = function (options) {
     }
     if (options.auth !== null) {
         package.dependencies = {
-            "kleek-main": "1.0.0",
-            "kleek-auth": "1.0.0"
+            "kleek-main": "^1.0.0",
+            "kleek-auth": "^1.0.0"
         }
     }
     try {
