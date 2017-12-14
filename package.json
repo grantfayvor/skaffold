@@ -1,5 +1,5 @@
 {
-  "name": "scaffold-init",
+  "name": "scaffold",
   "version": "1.0.0",
   "description": "interactive CLI init for scaffold project",
   "main": "index.js",

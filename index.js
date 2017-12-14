@@ -127,7 +127,9 @@ var copyIndexFile = function () {
         }
         fs.writeFileSync(currentPath + '/index.js', indexData + '\n\n' + authData);
         fs.mkdirSync(currentPath + '/public');
-        fs.writeFileSync(currentPath + '/public/index.html', 'Welcome! Do well to edit your index page');
+        fs.writeFileSync(currentPath + '/public/style.css', ' ');
+        fs.mkdirSync(currentPath + '/views');
+        fs.writeFileSync(currentPath + '/views/index.html', 'Welcome! Do well to edit your index page');
     } catch (error) {
         throw new Error("error occured while trying to copy index file. please try again. " + error);
     }
