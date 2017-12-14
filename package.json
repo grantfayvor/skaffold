@@ -1,6 +1,6 @@
 {
   "name": "kleek",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "interactive CLI init for kleek project",
   "main": "index.js",
   "bin": {
