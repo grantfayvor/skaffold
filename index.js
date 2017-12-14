@@ -145,7 +145,7 @@ var copyRouteFile = function () {
         fs.writeFileSync(currentPath + '/routes/route.js', routeData + '\n\n' + authRouteData);
         setTimeout(function () {
             status.stop();
-        }, 50);
+        }, 100);
     } catch (error) {
         throw new Error("error occured while trying to copy route file. please try again. " + error);
     }
