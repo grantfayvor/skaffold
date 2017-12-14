@@ -18,7 +18,7 @@ clear();
 var processArgv = require('minimist')(process.argv.slice(2));
 console.log(
     chalk.yellow(
-        figlet.textSync('HERMES', { horizontalLayout: 'full' })
+        figlet.textSync('KLeeK', { horizontalLayout: 'full' })
     )
 );
 
@@ -103,12 +103,12 @@ var createConfigFile = function (data) {
 var updatePackageJson = function (options) {
     var package = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
     package.dependencies = {
-        "hermes-main": "1.0.0"
+        "kleek-main": "1.0.0"
     }
     if (options.auth !== null) {
         package.dependencies = {
-            "hermes-main": "1.0.0",
-            "hermes-auth": "1.0.0"
+            "kleek-main": "1.0.0",
+            "kleek-auth": "1.0.0"
         }
     }
     try {

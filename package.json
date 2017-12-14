@@ -1,10 +1,10 @@
 {
-  "name": "hermes",
+  "name": "kleek",
   "version": "1.0.0",
-  "description": "interactive CLI init for hermes project",
+  "description": "interactive CLI init for kleek project",
   "main": "index.js",
   "bin": {
-    "hermes": "./index.js"
+    "kleek": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
