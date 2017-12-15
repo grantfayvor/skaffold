@@ -24,20 +24,23 @@ console.log(
 
 mainSetup(function (primaryArgs) {
     options = primaryArgs;
-    authSetup(primaryArgs.auth, function (secondaryArgs) {
-        if (options.auth === 'true') {
-            options.auth = secondaryArgs;
-        } else {
-            options = secondaryArgs;
-        }
-        var promise = new Promise(function (resolve, reject) {
-            status.start();
-        })
-            .then(updatePackageJson(options))
-            .then(createConfigFile(JSON.stringify(options)))
-            .then(copyIndexFile())
-            .then(copyRouteFile());
+    databaseSetUp(function (databaseArgs) {
+        options.database = databaseArgs;
+        authSetup(options.auth, function (authArgs) {
+            if (options.auth === 'true') {
+                options.auth = authArgs;
+            } else {
+                options = authArgs;
+            }
+            var promise = new Promise(function (resolve, reject) {
+                status.start();
+            })
+                .then(updatePackageJson(options))
+                .then(createConfigFile(JSON.stringify(options)))
+                .then(copyIndexFile())
+                .then(copyRouteFile());
 
+        });
     });
 });
 
@@ -52,7 +55,7 @@ function mainSetup(callback) {
                 if (value.length) {
                     return true;
                 } else {
-                    return 'Please enter your project\'s name';
+                    return 'Please enter your projects name';
                 }
             }
         },
@@ -64,34 +67,11 @@ function mainSetup(callback) {
             default: 'es5'
         },
         {
-            name: 'databaseHost',
-            type: 'input',
-            message: 'Enter your sql connection host: ',
-            default: '127.0.0.1'
-        },
-        {
-            name: 'databasePort',
-            type: 'input',
-            message: 'Enter your sql connection port: ',
-            default: '3306'
-        },
-        {
-            name: 'databaseName',
-            type: 'input',
-            message: 'Enter your database name: ',
-            default: processArgv._[0] || path.basename(process.cwd())
-        },
-        {
-            name: 'databaseUsername',
-            type: 'input',
-            message: 'Enter your sql connection username: ',
-            default: 'root'
-        },
-        {
-            name: 'databasePassword',
-            type: 'input',
-            message: 'Enter your sql connection password: ',
-            default: ''
+            name: 'database',
+            type: 'list',
+            choices: ['yes'],
+            message: 'Press enter at this point',
+            default: 'yes'
         },
         {
             name: 'auth',
@@ -101,6 +81,43 @@ function mainSetup(callback) {
             default: 'false'
         }
     ];
+    inquirer.prompt(questions).then(callback);
+}
+
+function databaseSetUp(callback) {
+    var questions = [
+        {
+            name: 'host',
+            type: 'input',
+            message: 'Enter your sql connection host: ',
+            default: '127.0.0.1'
+        },
+        {
+            name: 'port',
+            type: 'input',
+            message: 'Enter your sql connection port: ',
+            default: '3306'
+        },
+        {
+            name: 'name',
+            type: 'input',
+            message: 'Enter your database name: ',
+            default: processArgv._[0] || path.basename(process.cwd())
+        },
+        {
+            name: 'username',
+            type: 'input',
+            message: 'Enter your sql connection username: ',
+            default: 'root'
+        },
+        {
+            name: 'password',
+            type: 'input',
+            message: 'Enter your sql connection password: ',
+            default: ''
+        }
+    ];
+
     inquirer.prompt(questions).then(callback);
 }
 
@@ -118,6 +135,7 @@ function authSetup(useAuth, callback) {
         inquirer.prompt(questions).then(callback);
     } else {
         options.auth = null;
+        delete options.auth;
         callback(options);
     }
 }
