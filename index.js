@@ -18,7 +18,7 @@ clear();
 var processArgv = require('minimist')(process.argv.slice(2));
 console.log(
     chalk.yellow(
-        figlet.textSync('KLeeK', { horizontalLayout: 'full' })
+        figlet.textSync('SKaFFOLD', { horizontalLayout: 'full' })
     )
 );
 
@@ -38,7 +38,8 @@ mainSetup(function (primaryArgs) {
                 .then(updatePackageJson(options))
                 .then(createConfigFile(JSON.stringify(options)))
                 .then(copyIndexFile())
-                .then(copyRouteFile());
+                .then(copyRouteFile())
+                .then(copyModels());
 
         });
     });
@@ -149,14 +150,14 @@ var createConfigFile = function (data) {
 };
 
 var updatePackageJson = function (options) {
-    var package = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+    var package = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
     package.dependencies = {
-        "kleek-main": "1.0.0"
+        "skaffold-main": "1.0.0"
     }
     if (options.auth !== null) {
         package.dependencies = {
-            "kleek-main": "^1.0.0",
-            "kleek-auth": "^1.0.0"
+            "skaffold-main": "^1.0.0",
+            "skaffold-auth": "^1.0.0"
         }
     }
     try {
@@ -196,6 +197,18 @@ var copyRouteFile = function () {
         }, 100);
     } catch (error) {
         throw new Error("error occured while trying to copy route file. please try again. " + error);
+    }
+}
+
+var copyModels = function () {
+    try {
+        var model = fs.readFileSync(__dirname + '/lib/main/models/product.json', 'utf-8');
+        fs.mkdirSync(currentPath + '/models');
+        fs.writeFileSync(currentPath + '/models/product.json', model);
+        model = fs.readFileSync(__dirname + '/lib/main/models/category.json', 'utf-8');
+        fs.writeFileSync(currentPath + '/models/category.json', model);
+    } catch (error) {
+        throw new Error("error occured while trying to copy model file. Please try again. " +error);
     }
 }
 
