@@ -135,7 +135,7 @@ function authSetup(useAuth, callback) {
         ];
         inquirer.prompt(questions).then(callback);
     } else {
-        options.auth = null;
+        delete options.auth;
         callback(options);
     }
 }
@@ -170,7 +170,7 @@ var copyIndexFile = function () {
     try {
         var indexData = fs.readFileSync(__dirname + '/lib/main/index.js', 'utf8');
         var authData = '';
-        if (options.auth !== null) {
+        if (options.auth) {
             authData = getAuthData();
         }
         fs.writeFileSync(currentPath + '/index.js', indexData + '\n\n' + authData);
