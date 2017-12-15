@@ -136,7 +136,6 @@ function authSetup(useAuth, callback) {
         inquirer.prompt(questions).then(callback);
     } else {
         options.auth = null;
-        delete options.auth;
         callback(options);
     }
 }
@@ -169,7 +168,7 @@ var updatePackageJson = function (options) {
 
 var copyIndexFile = function () {
     try {
-        var indexData = fs.readFileSync(__dirname + '/lib/main/index.js', 'utf-8');
+        var indexData = fs.readFileSync(__dirname + '/lib/main/index.js', 'utf8');
         var authData = '';
         if (options.auth !== null) {
             authData = getAuthData();
@@ -186,7 +185,8 @@ var copyIndexFile = function () {
 
 var copyRouteFile = function () {
     try {
-        var routeData = fs.readFileSync(__dirname + '/lib/main/routes/route.js', 'utf-8');
+        var routeData = fs.readFileSync(__dirname + '/lib/main/routes/route.js', 'utf8');
+        var authRouteData = {};
         if (options.auth !== null) {
             authRouteData = getAuthRouteData();
         }
@@ -202,10 +202,10 @@ var copyRouteFile = function () {
 
 var copyModels = function () {
     try {
-        var model = fs.readFileSync(__dirname + '/lib/main/models/product.json', 'utf-8');
+        var model = fs.readFileSync(__dirname + '/lib/main/models/product.json', 'utf8');
         fs.mkdirSync(currentPath + '/models');
         fs.writeFileSync(currentPath + '/models/product.json', model);
-        model = fs.readFileSync(__dirname + '/lib/main/models/category.json', 'utf-8');
+        model = fs.readFileSync(__dirname + '/lib/main/models/category.json', 'utf8');
         fs.writeFileSync(currentPath + '/models/category.json', model);
     } catch (error) {
         throw new Error("error occured while trying to copy model file. Please try again. " +error);
@@ -216,9 +216,9 @@ var getAuthData = function () {
     var authData = '\n';
     try {
         if (options.auth.type === 'jwt') {
-            authData = fs.readFileSync(__dirname + '/lib/auth/jwt.js', 'utf-8');
+            authData = fs.readFileSync(__dirname + '/lib/auth/jwt.js', 'utf8');
         } else {
-            authData = fs.readFileSync(__dirname + '/lib/auth/local.js', 'utf-8');
+            authData = fs.readFileSync(__dirname + '/lib/auth/local.js', 'utf8');
         }
         return authData;
     } catch (error) {
@@ -230,7 +230,7 @@ var getAuthData = function () {
 var getAuthRouteData = function () {
     var authData = '\n';
     try {
-        authData = fs.readFileSync(__dirname + '/lib/auth/routes/route.js', 'utf-8');
+        authData = fs.readFileSync(__dirname + '/lib/auth/routes/route.js', 'utf8');
         return authData;
     } catch (error) {
         throw new Error("error occured while trying to copy authentication file. please try again. " + error);
