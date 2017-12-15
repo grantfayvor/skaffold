@@ -207,6 +207,8 @@ var copyModels = function () {
         fs.writeFileSync(currentPath + '/models/product.json', model);
         model = fs.readFileSync(__dirname + '/lib/main/models/category.json', 'utf8');
         fs.writeFileSync(currentPath + '/models/category.json', model);
+        model = fs.readFileSync(__dirname + '/lib/main/models/user.json', 'utf8');
+        fs.writeFileSync(currentPath + '/models/user.json', model);
     } catch (error) {
         throw new Error("error occured while trying to copy model file. Please try again. " +error);
     }
