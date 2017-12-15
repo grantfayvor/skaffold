@@ -9,5 +9,6 @@ __STEPS TO INSTALL__
 * if Project name is not supplied then skaffold uses the name of the current folder although you can still override it in the steps that follow.
 * answer the questions that follow to setup your new application. pressing enter chooses the defaults for this application.
 * then run the command <code>npm install</code>
+* remember to create your database tables. at least until i add migrations.
 
 Now your application is all setup. Have fun coding ;)
