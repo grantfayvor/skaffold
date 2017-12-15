@@ -37,7 +37,8 @@ mainSetup(function (primaryArgs) {
             })
                 .then(updatePackageJson(options))
                 .then(createConfigFile(JSON.stringify(options)))
-                .then(copyIndexFile())
+                .then(makeDirectories())
+                .then(copyIndexFiles())
                 .then(copyRouteFile())
                 .then(copyModels());
 
@@ -153,7 +154,7 @@ var updatePackageJson = function (options) {
     package.dependencies = {
         "skaffold-ecommerce": "^1.0.0"
     }
-    if (options.auth !== null) {
+    if (options.auth) {
         package.dependencies = {
             "skaffold-ecommerce": "^1.0.0",
             "skaffold-auth": "^1.0.0"
@@ -166,7 +167,14 @@ var updatePackageJson = function (options) {
     }
 }
 
-var copyIndexFile = function () {
+var makeDirectories = function () {
+    fs.mkdirSync(currentPath + '/models');
+    fs.mkdirSync(currentPath + '/routes');
+    fs.mkdirSync(currentPath + '/public');
+    fs.mkdirSync(currentPath + '/views');
+}
+
+var copyIndexFiles = function () {
     try {
         var indexData = fs.readFileSync(__dirname + '/lib/main/index.js', 'utf8');
         var authData = '';
@@ -174,9 +182,7 @@ var copyIndexFile = function () {
             authData = getAuthData();
         }
         fs.writeFileSync(currentPath + '/index.js', indexData + '\n\n' + authData);
-        fs.mkdirSync(currentPath + '/public');
         fs.writeFileSync(currentPath + '/public/style.css', ' ');
-        fs.mkdirSync(currentPath + '/views');
         fs.writeFileSync(currentPath + '/views/index.html', 'Welcome! Do well to edit your index page');
     } catch (error) {
         throw new Error("error occured while trying to copy index file. please try again. " + error);
@@ -187,14 +193,10 @@ var copyRouteFile = function () {
     try {
         var routeData = fs.readFileSync(__dirname + '/lib/main/routes/route.js', 'utf8');
         var authRouteData = {};
-        if (options.auth !== null) {
+        if (options.auth) {
             authRouteData = getAuthRouteData();
         }
-        fs.mkdirSync(currentPath + '/routes');
         fs.writeFileSync(currentPath + '/routes/route.js', routeData + '\n\n' + authRouteData);
-        setTimeout(function () {
-            status.stop();
-        }, 100);
     } catch (error) {
         throw new Error("error occured while trying to copy route file. please try again. " + error);
     }
@@ -203,14 +205,16 @@ var copyRouteFile = function () {
 var copyModels = function () {
     try {
         var model = fs.readFileSync(__dirname + '/lib/main/models/product.json', 'utf8');
-        fs.mkdirSync(currentPath + '/models');
         fs.writeFileSync(currentPath + '/models/product.json', model);
         model = fs.readFileSync(__dirname + '/lib/main/models/category.json', 'utf8');
         fs.writeFileSync(currentPath + '/models/category.json', model);
         model = fs.readFileSync(__dirname + '/lib/main/models/user.json', 'utf8');
         fs.writeFileSync(currentPath + '/models/user.json', model);
+        setTimeout(function () {
+            status.stop();
+        }, 100);
     } catch (error) {
-        throw new Error("error occured while trying to copy model file. Please try again. " +error);
+        throw new Error("error occured while trying to copy model file. Please try again. " + error);
     }
 }
 
