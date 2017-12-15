@@ -152,11 +152,11 @@ var createConfigFile = function (data) {
 var updatePackageJson = function (options) {
     var package = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
     package.dependencies = {
-        "skaffold-main": "1.0.0"
+        "skaffold-ecommerce": "^1.0.0"
     }
     if (options.auth !== null) {
         package.dependencies = {
-            "skaffold-main": "^1.0.0",
+            "skaffold-ecommerce": "^1.0.0",
             "skaffold-auth": "^1.0.0"
         }
     }
