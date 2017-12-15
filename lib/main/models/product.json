@@ -1,5 +1,6 @@
 {
     "name": "",
     "brand": "",
-    "categoryId": 0
+    "category_id": 0,
+    "image_location": ""
 }
