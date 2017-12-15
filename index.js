@@ -70,7 +70,7 @@ function mainSetup(callback) {
             name: 'database',
             type: 'list',
             choices: ['yes'],
-            message: 'Press enter at this point',
+            message: 'Press enter at this point for database.',
             default: 'yes'
         },
         {
