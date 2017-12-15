@@ -27,7 +27,7 @@ mainSetup(function (primaryArgs) {
     databaseSetUp(function (databaseArgs) {
         options.database = databaseArgs;
         authSetup(options.auth, function (authArgs) {
-            if (options.auth === 'true') {
+            if (options.auth === 'yes') {
                 options.auth = authArgs;
             } else {
                 options = authArgs;
@@ -77,9 +77,9 @@ function mainSetup(callback) {
         {
             name: 'auth',
             type: 'list',
-            choices: ['true', 'false'],
+            choices: ['yes', 'no'],
             message: 'Do you want to use authentication? ',
-            default: 'false'
+            default: 'no'
         }
     ];
     inquirer.prompt(questions).then(callback);
@@ -123,7 +123,7 @@ function databaseSetUp(callback) {
 }
 
 function authSetup(useAuth, callback) {
-    if (useAuth === 'true') {
+    if (useAuth === 'yes') {
         var questions = [
             {
                 name: 'type',
