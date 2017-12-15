@@ -64,6 +64,18 @@ function mainSetup(callback) {
             default: 'es5'
         },
         {
+            name: 'databaseHost',
+            type: 'input',
+            message: 'Enter your sql connection host: ',
+            default: '127.0.0.1'
+        },
+        {
+            name: 'databasePort',
+            type: 'input',
+            message: 'Enter your sql connection port: ',
+            default: '3306'
+        },
+        {
             name: 'databaseName',
             type: 'input',
             message: 'Enter your database name: ',
