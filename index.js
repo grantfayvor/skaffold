@@ -47,7 +47,7 @@ function mainSetup(callback) {
             name: 'name',
             type: 'input',
             default: processArgv._[0] || path.basename(process.cwd()),
-            message: 'Enter your project\'s name: ',
+            message: 'Enter your projects name: ',
             validate: function (value) {
                 if (value.length) {
                     return true;
@@ -62,6 +62,24 @@ function mainSetup(callback) {
             choices: ['es6', 'es5'],
             message: 'Enter your ECMASCRIPT version: ',
             default: 'es5'
+        },
+        {
+            name: 'databaseName',
+            type: 'input',
+            message: 'Enter your database name: ',
+            default: processArgv._[0] || path.basename(process.cwd())
+        },
+        {
+            name: 'databaseUsername',
+            type: 'input',
+            message: 'Enter your sql connection username: ',
+            default: 'root'
+        },
+        {
+            name: 'databasePassword',
+            type: 'input',
+            message: 'Enter your sql connection password: ',
+            default: ''
         },
         {
             name: 'auth',
