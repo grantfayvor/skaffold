@@ -181,7 +181,8 @@ var copyIndexFiles = function () {
         if (options.auth) {
             authData = getAuthData();
         }
-        fs.writeFileSync(currentPath + '/index.js', indexData + '\n\n' + authData);
+        var routeData = fs.readFileSync(__dirname + '/lib/main/routes/index.js', 'utf8');
+        fs.writeFileSync(currentPath + '/index.js', indexData + '\n\n' + authData + '\n\n' + routeData);
         fs.writeFileSync(currentPath + '/public/style.css', ' ');
         fs.writeFileSync(currentPath + '/views/index.html', 'Welcome! Do well to edit your index page');
     } catch (error) {
