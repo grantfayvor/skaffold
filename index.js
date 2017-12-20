@@ -196,8 +196,10 @@ var copyRouteFile = function () {
         var authRouteData = {};
         if (options.auth) {
             authRouteData = getAuthRouteData();
+            fs.writeFileSync(currentPath + '/routes/route.js', authRouteData);
+        } else {
+            fs.writeFileSync(currentPath + '/routes/route.js', routeData /* + '\n\n' + authRouteData */);
         }
-        fs.writeFileSync(currentPath + '/routes/route.js', routeData + '\n\n' + authRouteData);
     } catch (error) {
         throw new Error("error occured while trying to copy route file. please try again. " + error);
     }
