@@ -1,5 +1,5 @@
 # SKAFFOLD
-
+<code><h1>__npm install -g skaffold__</h1></code>
 Skaffold is an open source framework for creating ecommerce applications within minutes and hopefully it would be extended to other kinds of systems also. This is the initializer for a skaffolded project.
 
 __STEPS TO INSTALL__
