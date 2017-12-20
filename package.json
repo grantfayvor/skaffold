@@ -1,23 +1,31 @@
 {
-  "name": "skaffold",
-  "version": "1.0.5",
-  "description": "interactive CLI init for skaffold project",
-  "main": "index.js",
-  "bin": {
-    "skaffold": "./index.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Harrison Favour",
-  "license": "MIT",
-  "dependencies": {
-    "chalk": "^2.3.0",
-    "clear": "0.0.1",
-    "clui": "^0.3.6",
-    "figlet": "^1.2.0",
-    "inquirer": "^4.0.1",
-    "minimist": "^1.2.0",
-    "preferences": "^1.0.2"
-  }
+    "name": "skaffold",
+    "version": "1.0.5",
+    "description": "interactive CLI initializer for skaffold project",
+    "main": "index.js",
+    "bin": {
+        "skaffold": "./index.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/grantfayvor/skaffold.git"
+    },
+    "author": "Harrison Favour",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/grantfayvor/skaffold/issues"
+    },
+    "homepage": "https://github.com/grantfayvor/skaffold#readme",
+    "dependencies": {
+        "chalk": "^2.3.0",
+        "clear": "0.0.1",
+        "clui": "^0.3.6",
+        "figlet": "^1.2.0",
+        "inquirer": "^4.0.1",
+        "minimist": "^1.2.0",
+        "preferences": "^1.0.2"
+    }
 }
