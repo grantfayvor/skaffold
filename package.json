@@ -1,6 +1,6 @@
 {
     "name": "skaffold",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "interactive CLI initializer for skaffold project",
     "main": "index.js",
     "bin": {
