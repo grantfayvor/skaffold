@@ -12,3 +12,5 @@ __STEPS TO INSTALL__
 * remember to create your database tables. at least until i add migrations.
 
 Now your application is all setup. Have fun coding ;)
+
+Run your application by running <code>node index</code> from your terminal

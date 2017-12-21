@@ -13,6 +13,11 @@
         "type": "git",
         "url": "git+https://github.com/grantfayvor/skaffold.git"
     },
+    "keywords": [
+        "skaffold",
+        "ecommerce",
+        "authentication"
+    ],
     "author": "Harrison Favour",
     "license": "MIT",
     "bugs": {
