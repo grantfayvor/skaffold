@@ -151,14 +151,15 @@ var createConfigFile = function (data) {
 
 var updatePackageJson = function (options) {
     var package = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
-    package.dependencies = {
-        "skaffold-ecommerce": "^1.0.0"
+    if (package.dependencies) {
+        package.dependencies["skaffold-ecommerce"] = "^1.0.0";
+    } else {
+        package.dependencies = {
+            "skaffold-ecommerce": "^1.0.0"
+        };
     }
     if (options.auth) {
-        package.dependencies = {
-            "skaffold-ecommerce": "^1.0.0",
-            "skaffold-auth": "^1.0.0"
-        }
+        package.dependencies["skaffold-auth"] = "^1.0.0";
     }
     try {
         fs.writeFileSync(currentPath + '/package.json', JSON.stringify(package));
